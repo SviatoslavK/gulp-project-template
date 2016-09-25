@@ -1,0 +1,21 @@
+{
+    "name": "Gulp template",
+    "description": "Template",
+    "main": "",
+    "authors": [
+        "SviatoslavK <kolodaslav@gmail.com>"
+    ],
+    "license": "MIT",
+    "homepage": "https://github.com/SviatoslavK/gulp-project-template",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "normalize.css": "*",
+        "jquery": "2.*"
+    }
+}
