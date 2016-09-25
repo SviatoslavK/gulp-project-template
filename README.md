@@ -3,13 +3,13 @@
 
 ##To get started, download this template.
 
-**In the project folder, open a terminal and type the command:**
+##In the project folder, open a terminal and type the command:
 
     npm i
 
-**All dependencies will be installed in a new project.**
+##All dependencies will be installed in a new project.
 
-***used plugins:***
+**Used plugins:**
 
 [gulp-clean-css](https://www.npmjs.com/package/gulp-clean-css/)  -  need for CSS code compression
 
@@ -17,6 +17,7 @@
 
 
 [imagemin-pngquant](https://www.npmjs.com/package/gulp-pngquant-openmp/)  -  additions to the previous plugin to work with PNG
+
 [gulp-cache](https://www.npmjs.com/package/gulp-cache/)  -  to cache images
 
 [gulp.spritesmith](https://www.npmjs.com/package/gulp.spritesmith/)  -  to automatically create sprites
@@ -32,6 +33,6 @@
 [rimraf](https://www.npmjs.com/package/gulp-dest-clean/)  -  to clean up the build directory
 
 
-**To install the Bower dependencies, type the command:**
+##To install the Bower dependencies, type the command:
 
     bower i
