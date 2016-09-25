@@ -37,4 +37,4 @@
 
     bower i
     
-##Folders ***bower_components*** and ***node_modules*** added to the **.gitignor** file. They will not be loaded into GitHub.
+**Folders** ***bower_components*** **and** ***node_modules*** **added to the** **.gitignor** **file. They will not be loaded into GitHub.**
