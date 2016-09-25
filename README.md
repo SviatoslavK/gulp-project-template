@@ -36,3 +36,5 @@
 ##To install the Bower dependencies, type the command:
 
     bower i
+    
+##Folders ***bower_components*** and ***node_modules*** added to the **.gitignor** file. They will not be loaded into GitHub.
