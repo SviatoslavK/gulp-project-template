@@ -12,15 +12,25 @@
 ***used plugins:***
 
 [gulp-clean-css](https://www.npmjs.com/package/gulp-clean-css/)  -  need for CSS code compression
+
 [gulp-imagemin](https://www.npmjs.com/package/gulp-imagemin/)  -  to compress images
+
+
 [imagemin-pngquant](https://www.npmjs.com/package/gulp-pngquant-openmp/)  -  additions to the previous plugin to work with PNG
 [gulp-cache](https://www.npmjs.com/package/gulp-cache/)  -  to cache images
+
 [gulp.spritesmith](https://www.npmjs.com/package/gulp.spritesmith/)  -  to automatically create sprites
+
 [gulp-uglify](https://www.npmjs.com/package/gulp-uglify/)  -  it will compress JS code
+
 [gulp-sass](https://www.npmjs.com/package/gulp-sass/)  -  to compile our SCSS code
+
 [gulp-rigger](https://www.npmjs.com/package/gulp-rigger/)  -  the plugin allows you to import a file into another files
+
 [gulp-watch](https://www.npmjs.com/package/gulp-watch/)  -  need for monitoring file changes
+
 [rimraf](https://www.npmjs.com/package/gulp-dest-clean/)  -  to clean up the build directory
+
 
 **To install the Bower dependencies, type the command:**
 
