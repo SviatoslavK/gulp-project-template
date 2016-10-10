@@ -1,16 +1,21 @@
 'use strict';
 
-var gulp        = require('gulp'),
-    watch       = require('gulp-watch'),
-    uglify      = require('gulp-uglify'),
-    sass        = require('gulp-sass'),
-    rigger      = require('gulp-rigger'),
-    cleanCSS    = require('gulp-clean-css'),
-    imagemin    = require('gulp-imagemin'),
-    pngquant    = require('imagemin-pngquant'),
-    cache       = require('gulp-cache'),
-    spritesmith = require('gulp.spritesmith'),
-    rimraf      = require('rimraf');
+var gulp         = require('gulp'),
+    watch        = require('gulp-watch'),
+    uglify       = require('gulp-uglify'),
+    sass         = require('gulp-sass'),
+    rigger       = require('gulp-rigger'),
+    autoprefixer = require('gulp-autoprefixer'),
+    cleanCSS     = require('gulp-clean-css'),
+    imagemin     = require('gulp-imagemin'),
+    pngquant     = require('imagemin-pngquant'),
+    cache        = require('gulp-cache'),
+    spritesmith  = require('gulp.spritesmith'),
+    rimraf       = require('rimraf'),
+    browserSync  = require("browser-sync"),
+    notify       = require("gulp-notify"),
+    plumber      = require('gulp-plumber'),
+    reload       = browserSync.reload;
 
 var path = {
     build: {
@@ -41,48 +46,72 @@ var path = {
     clean: './build'
 };
 
+var config = {
+    server: {
+        baseDir: "./build"
+    },
+    host: 'localhost',
+    port: 9000,
+    logPrefix: "LiveReload"
+};
+
 gulp.task('html:build', function() {
     gulp.src(path.src.html)
+        .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
         .pipe(rigger())
-        .pipe(gulp.dest(path.build.html));
+        .pipe(gulp.dest(path.build.html))
+        .pipe(notify("HTML Done!!!"))
+        .pipe(reload({stream: true}));
 });
 
 gulp.task('js:build', function() {
     gulp.src(path.src.js)
         .pipe(rigger())
+        .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
         .pipe(uglify())
-        .pipe(gulp.dest(path.build.js));
+        .pipe(gulp.dest(path.build.js))
+        .pipe(notify("JS Done!!!"))
+        .pipe(reload({stream: true}));
 });
 
 gulp.task('style:build', function() {
     gulp.src(path.src.style)
+        .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
         .pipe(sass())
+        .pipe(autoprefixer({
+            browsers: ['last 3 versions', '>1%', 'ie 9'],
+            cascade: false
+        }))
         .pipe(cleanCSS())
-        .pipe(gulp.dest(path.build.css));
+        .pipe(gulp.dest(path.build.css))
+        .pipe(notify("CSS Done!!!"))
+        .pipe(reload({stream: true}));
 });
 
 gulp.task('image:build', function(){
     gulp.src(path.src.img)
         .pipe(cache(imagemin({
-            progressive: true,
-            svgoPlugins: [{removeViewBox: false}],
-            use: [pngquant()],
-            interlaced: true
+        progressive: true,
+        svgoPlugins: [{removeViewBox: false}],
+        use: [pngquant()],
+        interlaced: true
     })))
-        .pipe(gulp.dest(path.build.img));
+        .pipe(gulp.dest(path.build.img))
+        .pipe(reload({stream: true}));
 });
 
 gulp.task('sprite:build', function() {
     var spriteData =
         gulp.src(path.src.sprites)
-    .pipe(spritesmith({
-        imgName: 'sprite.png',
-        cssName: 'sprite.scss',
-        imgPath: '../img/sprite/sprite.png',
-    }));
-
-    spriteData.img.pipe(gulp.dest(path.build.spritesImg)); // путь, куда сохраняем картинку
-    spriteData.css.pipe(gulp.dest(path.build.spritesSCSS)); // путь, куда сохраняем стили
+        .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
+        .pipe(spritesmith({
+            imgName: 'sprite.png',
+            cssName: 'sprite.scss',
+            imgPath: '../img/sprite/sprite.png',
+            padding: 2
+        }));
+        spriteData.img.pipe(gulp.dest(path.build.spritesImg));
+        spriteData.css.pipe(gulp.dest(path.build.spritesSCSS));
 });
 
 gulp.task('fonts:build', function() {
@@ -119,6 +148,10 @@ gulp.task('watch', function() {
     });
 });
 
+gulp.task('webserver', function () {
+    browserSync(config);
+});
+
 gulp.task('clean', function(cb) {
     rimraf(path.clean, cb);
 });
@@ -127,4 +160,4 @@ gulp.task('clear', function() {
     return cache.clearAll();
 });
 
-gulp.task('default', [ 'build', 'watch']);
+gulp.task('default', [ 'build', 'webserver', 'watch']);

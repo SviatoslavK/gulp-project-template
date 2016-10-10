@@ -15,7 +15,6 @@
 
 [gulp-imagemin](https://www.npmjs.com/package/gulp-imagemin/)  -  to compress images
 
-
 [imagemin-pngquant](https://www.npmjs.com/package/gulp-pngquant-openmp/)  -  additions to the previous plugin to work with PNG
 
 [gulp-cache](https://www.npmjs.com/package/gulp-cache/)  -  to cache images
@@ -29,6 +28,14 @@
 [gulp-rigger](https://www.npmjs.com/package/gulp-rigger/)  -  the plugin allows you to import a file into another files
 
 [gulp-watch](https://www.npmjs.com/package/gulp-watch/)  -  need for monitoring file changes
+
+[gulp-autoprefixer](https://www.npmjs.com/package/gulp-autoprefixer/)  -  automatically adds-vendor prefixes for CSS properties
+
+[browser-sync]()  -  we can easily expand the local server with LiveReload
+
+[gulp-notify](https://www.npmjs.com/package/gulp-notify/)  -  outputs Gulp assembly faults in the form of system messages
+
+[gulp-plumber](https://www.npmjs.com/package/gulp-plumber/)  -  ￼to intercept the assembly error
 
 [rimraf](https://www.npmjs.com/package/gulp-dest-clean/)  -  to clean up the build directory
 
