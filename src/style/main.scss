@@ -1,9 +1,11 @@
 /*
 * Third Party
 */
-@import "../../bower_components/normalize.css/normalize.css";
+@import "../../bower_components/strict-reset.css/_strict-reset.scss";
 
 /*
 * Custom
 */
-@import "partials/app";
+@import "partials/_utils.scss";
+@import "partials/header.scss";
+@import "partials/footer.scss";
